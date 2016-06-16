@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Microposts</title>
+    <title>Miffyposts</title>
     <%= stylesheet_link_tag 'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
     <%= csrf_meta_tags %>
@@ -12,6 +12,9 @@
     <!--header設計在這裡：app/views/layouts/_header.html.erb-->
     <%= render 'layouts/header' %>
     <div class="container">
+      <% flash.each do |message_type, message| %> 
+        <div class="alert alert-warning">Moin! <%= @user.name %>! <%= message %></div>
+      <% end %> 
       <!--yieldの部分に各ページの部分テンプレート（erbファイル）が読み込まれます。-->
       <%= yield %>
     </div>

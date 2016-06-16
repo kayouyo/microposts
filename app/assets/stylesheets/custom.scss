@@ -5,7 +5,9 @@
 /* universal */
 
 body {
+  font-family: YuGothic, "游ゴシック", "メイリオ", Meiryo, "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", sans-serif;
   padding-top: 60px;
+  background-color: #ffff9f;
 }
 
 section {
@@ -43,7 +45,7 @@ h2 {
   margin-bottom: 30px;
   text-align: center;
   font-weight: normal;
-  color: #777;
+  color: #ffff9f;
 }
 
 p {
@@ -57,7 +59,7 @@ p {
   float: left;
   margin-right: 10px;
   font-size: 1.7em;
-  color: #fff;
+  color: #741c00;
   text-transform: uppercase;
   letter-spacing: -1px;
   padding-top: 9px;
@@ -65,6 +67,46 @@ p {
 }
 
 #logo:hover {
-  color: #fff;
+  color: #8e4600;
   text-decoration: none;
+}
+
+/* mixins, variables, etc. */
+
+$gray-medium-light: #eaeaea;
+
+@mixin box_sizing {
+  -moz-box-sizing:    border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing:         border-box;
+}
+
+/* forms */
+
+input, textarea, select, .uneditable-input {
+  border: 1px solid #bbb;
+  width: 100%;
+  margin-bottom: 15px;
+  @include box_sizing;
+}
+
+input {
+  height: auto !important;
+}
+
+/* error msg */
+
+#error_explanation {
+  color: #8e0001;
+  ul {
+    color: #8e0001;
+    margin: 0 0 30px 0;
+  }
+}
+
+.field_with_errors {
+  @extend .has-error;
+  .form-control {
+    color: $state-danger-text;
+  }
 }
