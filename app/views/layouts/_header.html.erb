@@ -6,7 +6,8 @@
     <nav>
       <ul class="nav navbar-nav navbar-right">
         <!--リンク先は指定しないので#としてあります。-->
-        <li><%= link_to "Home", root_path %></li>
+        <li><%= link_to "Home", '#' %></li>
+        <!--<li><%= link_to "Home", root_path %></li>-->
         <li><%= link_to "Help",   '#' %></li>
         <% if logged_in? %>
           <li><%= link_to "Users", '#' %></li>
@@ -16,7 +17,7 @@
             </a>
             <ul class="dropdown-menu">
               <li><%= link_to "Profile", current_user %></li>
-              <li><%= link_to "Settings", '#' %></li>
+              <li><%= link_to "Settings", edit_user_path(params[:id]) %></li>
               <li class="divider"></li>
               <li>
                 <%= link_to "Log out", logout_path, method: "delete" %>
