@@ -26,7 +26,7 @@
       <%= @user.animal %>
       <br>
 
-      <%= f.submit "Edit my Miffy account", class: "btn btn-large btn-warning" %>
+      <%= link_to "Edit my Miffy account", edit_user_path(params[:id]) , class: "btn col-md-offset-4 btn-large btn-warning" %>
     <% end %>
   </div>
 </div>
