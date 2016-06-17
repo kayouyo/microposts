@@ -50,5 +50,7 @@ class UsersController < ApplicationController
   
   def set_user
     @user = User.find(params[:id])
+    # 特定のUSERしか自分の情報をEDITできない
+    redirect_to root_path if current_user != @user
   end
 end
