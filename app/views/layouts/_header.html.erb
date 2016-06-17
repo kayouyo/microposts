@@ -6,8 +6,7 @@
     <nav>
       <ul class="nav navbar-nav navbar-right">
         <!--リンク先は指定しないので#としてあります。-->
-        <li><%= link_to "Home", '#' %></li>
-        <!--<li><%= link_to "Home", root_path %></li>-->
+        <li><%= link_to "Home", root_path %></li>
         <li><%= link_to "Help",   '#' %></li>
         <% if logged_in? %>
           <li><%= link_to "Users", '#' %></li>
