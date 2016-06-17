@@ -19,4 +19,13 @@ Rails.application.routes.draw do
 
   resources :microposts
   resources :relationships, only: [:create, :destroy]
+
+  # define the action of users' get method
+  get users do
+    member do
+      get 'following'
+      get 'follower'
+    end
+  end
+   
 end
