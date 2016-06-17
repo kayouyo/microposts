@@ -10,8 +10,9 @@ class User < ActiveRecord::Base
                     format: { with: VALID_EMAIL_REGEX },
                     uniqueness: { case_sensitive: false }
   has_secure_password
-  #countryは空でなく、また、最大30文字になる
-  validates :country, presence: true, length: { maximum: 30 }
+  #countryは空でなく、また、最大30文字になる()
+  # on: :update do not have to be set at first
+  validates :country, presence: true, length: { maximum: 30 }, on: :update
   #animalは空でなく、また、最大30文字になる
-  validates :animal, presence: true, length: { maximum: 30 }
+  validates :animal, presence: true, length: { maximum: 30 }, on: :update
 end
