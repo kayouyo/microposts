@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   # 編集・更新処理??
-  before_action :set_user, only: [:edit, :update]
+  before_action :set_user, only: [:show, :edit, :update]
 
   # show
   def show
@@ -50,7 +50,7 @@ class UsersController < ApplicationController
   
   def set_user
     @user = User.find(params[:id])
-    # 特定のUSERしか自分の情報をEDITできない
+    # 特定のUSERしか自分の情報をEDITできない only valid user can see, edit info
     redirect_to root_path if current_user != @user
   end
 end
