@@ -1,11 +1,13 @@
 class UsersController < ApplicationController
   # 編集・更新処理??
-  before_action :set_user, only: [:show, :edit, :update]
+  # before_action :set_user, only: [:show, :edit, :update]
+  before_action :set_user, only: [:edit, :update]
 
   # show
   def show
     @user = User.find(params[:id])
     @microposts = @user.microposts.order(created_at: :desc)
+    @micropost = current_user.microposts.build if logged_in?
   end
   
   # new

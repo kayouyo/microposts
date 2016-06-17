@@ -12,11 +12,6 @@
    　 <%= form_for(@user) do |f| %>
       <!-- 0616 Lesson7 6.6 エラー表示追加 -->
       <%= render 'shared/error_messages', object: f.object %> 
-      <!--<br>-->
-      <!--<br>-->
-      <!--<%= f.label :name %>-->
-      <!--<br>-->
-      <!--<%= @user.name %>-->
       <br><br>
       <%= f.label :email %>
       <br>
@@ -29,14 +24,17 @@
       <%= f.label :animal %>
       <br>
       <%= @user.animal %>
-      <br>
-
+      <br><br>
       <%= link_to "Edit my Miffy account", edit_user_path(params[:id]) , class: "btn col-md-offset-2 btn-large btn-warning" %>
     <% end %>
-  
+    </section>
+    <section class="micropost_form">
+      <%= render 'shared/micropost_form' %>
     </section>
   </aside>
+  
   <div class="col-md-8">
+    <%= render 'follow_form' if logged_in? %>
     <% if @user.microposts.any? %>
       <h3>Miffyposts (<%= @user.microposts.count %>)</h3>
       <ol class="microposts">

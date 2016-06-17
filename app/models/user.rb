@@ -18,4 +18,30 @@ class User < ActiveRecord::Base
   # 8.2 ユーザーと投稿の関連づけ 
   # 1 user can have many posts yet each post only belongs to 1 user
   has_many :microposts
+  
+  has_many :following_relationships, class_name:  "Relationship",
+                                     foreign_key: "follower_id",
+                                     dependent:   :destroy
+  has_many :following_users, through: :following_relationships, source: :followed
+  
+  has_many :follower_relationships, class_name:  "Relationship",
+                                    foreign_key: "followed_id",
+                                    dependent:   :destroy
+  has_many :follower_users, through: :follower_relationships, source: :follower
+  
+  # Follow other users
+  def follow(other_user)
+    following_relationships.find_or_create_by(followed_id: other_user.id)
+  end
+
+  # Unfollow following user
+  def unfollow(other_user)
+    following_relationship = following_relationships.find_by(followed_id: other_user.id)
+    following_relationship.destroy if following_relationship
+  end
+
+  # want to follow the existing user？
+  def following?(other_user)
+    following_users.include?(other_user)
+  end
 end

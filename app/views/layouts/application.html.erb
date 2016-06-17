@@ -13,7 +13,9 @@
     <%= render 'layouts/header' %>
     <div class="container">
       <% flash.each do |message_type, message| %> 
-        <div class="alert alert-warning">Moin! <%= @user.name %>! <%= message %></div>
+        <% if current_user.present? %>
+          <div class="alert alert-warning">Moin! <%= current_user.name %>! <%= message %></div>
+        <% end %>
       <% end %> 
       <!--yieldの部分に各ページの部分テンプレート（erbファイル）が読み込まれます。-->
       <%= yield %>
