@@ -36,6 +36,14 @@
   <div class="col-md-8">
     <%= render 'follow_form' if logged_in? %>
     <% if @user.microposts.any? %>
+      <h3>MiffyFollowers (<%= @user.follower_users.count %>)</h3>
+      <ol class="followers">
+       <%= render "followers" %>
+      </ol>
+      <h3>MiffyFollowings (<%= @user.following_users.count %>)</h3>
+      <ol class="followings">
+       <%= render "followings" %>
+      </ol>
       <h3>Miffyposts (<%= @user.microposts.count %>)</h3>
       <ol class="microposts">
         <%= render @microposts %>

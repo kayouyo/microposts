@@ -21,10 +21,10 @@ Rails.application.routes.draw do
   resources :relationships, only: [:create, :destroy]
 
   # define the action of users' get method
-  get users do
+  resources :users do
     member do
-      get 'following'
-      get 'follower'
+      get 'followers'
+      get 'followings'
     end
   end
    

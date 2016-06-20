@@ -8,6 +8,24 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @microposts = @user.microposts.order(created_at: :desc)
     @micropost = current_user.microposts.build if logged_in?
+    
+    # follower    
+    followerall  = Relationship.where(followed_id: params[:id])
+    
+    p @follower_users = Array.new
+    
+    followerall.each do |follower|
+    @follower_users << User.find_by(id: follower.follower_id)
+    end
+    
+    # following
+    followingall = Relationship.where(follower_id: params[:id])
+    
+    @following_users = Array.new
+      
+    followingall.each do |following|
+    p @following_users << User.find_by(id: following.followed_id)
+    end 
   end
   
   # new
@@ -42,6 +60,31 @@ class UsersController < ApplicationController
       render 'edit'
     end
   end
+  
+  # def フォロワー、フォローの全データを取ってくるアクション
+  def followings  
+    @user = User.find(params[:id])
+    followingall = Relationship.where(follower_id: params[:id])
+    
+    @following_users = Array.new
+      
+    followingall.each do |following|
+    p @following_users << User.find_by(id: following.followed_id)
+    end   
+  end
+  
+  def followers
+    @user  = User.find(params[:id])
+    followerall  = Relationship.where(followed_id: params[:id])
+    
+    p @follower_users = Array.new
+    
+    followerall.each do |follower|
+    @follower_users << User.find_by(id: follower.follower_id)
+    end
+  end
+  # defと同じ名前のview作成
+  # view　フォロワー、フォローの全データを表示する
   
   private
 
